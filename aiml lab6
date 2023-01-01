@@ -1,0 +1,21 @@
+
+Write a program to implement the naïve Bayesian classifier for a sample training data set stored as a .CSV file. Compute the accuracy of the classifier, considering few test data sets.
+
+from sklearn import datasets
+from sklearn import metrics
+from sklearn.naive_bayes import MultinomialNB
+# The dataset used here is iris.csv stored in the anaconda installed folder
+dataset=datasets.load_iris()
+model=MultinomialNB()
+model.fit(dataset.data,dataset.target)
+expected=dataset.target
+predected=model.predict(dataset.data)
+print(metrics.accuracy_score(expected,predected))
+print(metrics.confusion_matrix(expected,predected))    
+
+OUTPUT
+0.9533333333333334
+
+[[50  0  0]
+[ 0 46  4]
+[ 0  3 47]]
