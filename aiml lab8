@@ -1,0 +1,29 @@
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import confusion_matrix,classification_report
+from sklearn import datasets
+iris=datasets.load_iris()
+iris_data=iris.data
+iris_labels=iris.target
+print(iris_data)
+x_train,X_test,y_train,Y_test = train_test_split(iris_data,iris_labels,test_size=0.20)
+classifier=KNeighborsClassifier(n_neighbors=5)
+classifier.fit(x_train,y_train)
+y_prd=classifier.predict(X_test)
+print(confusion_matrix(Y_test,y_prd))
+print(classification_report(Y_test,y_prd))
+
+OUTPUT
+
+[[10  0  0]
+ [ 0  8  1]
+ [ 0  2  9]]
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        10
+           1       0.80      0.89      0.84         9
+           2       0.90      0.82      0.86        11
+
+    accuracy                           0.90        30
+   macro avg       0.90      0.90      0.90        30
+weighted avg       0.90      0.90      0.90        30
